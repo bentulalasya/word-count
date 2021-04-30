@@ -16,27 +16,26 @@ public class Solution {
   3. Find and display the last sentence on the file that contains the most used word
    */
   void wordCount() {
-    //Change the file path
+    // Please change path to file before running.
     try (BufferedReader br =
         new BufferedReader(
             new FileReader(
-                "pathTofile/passage.txt"))) {
+                "PathToFile/passage.txt"))) {
       int totalWordCount = 0;
       String curLine;
       Map<String, Integer> wordCountMap = new HashMap<>();
-      List<String> linesFromFile = new ArrayList<>();
+      List<String> sentenceFromFile = new ArrayList<>();
 
       // Loop through and form a map with word as key and count as value
       while ((curLine = br.readLine()) != null) {
-        linesFromFile.add(curLine);
-        String[] words = curLine.split("\\s+");
-        // Count total words in the file
-        totalWordCount += words.length;
-
-        for (String word : words) {
-          // Remove punctuation
-          word = word.replaceAll("\\p{Punct}", "");
-          wordCountMap.put(word, wordCountMap.getOrDefault(word, 0) + 1);
+        for (String sentence : curLine.split("[.]\\s")) {
+          sentenceFromFile.add(sentence);
+          for (String word : sentence.split("\\s+")) {
+            totalWordCount++;
+            // Remove punctuation
+            word = word.replaceAll("\\p{Punct}", "");
+            wordCountMap.put(word, wordCountMap.getOrDefault(word, 0) + 1);
+          }
         }
       }
 
@@ -54,12 +53,12 @@ public class Solution {
       top10Words.forEach(System.out::println);
 
       // Identify the last sentence on the file that contains the most used word
-      for (String line : linesFromFile) {
-        if (line.contains(top10Words.get(0))) {
+      for (int i = sentenceFromFile.size() - 1; i >= 0; i--) {
+        if (sentenceFromFile.get(i).contains(top10Words.get(0))) {
           System.out.println("===========================================================");
           System.out.println("Last sentence on the file that contains the most used word:");
           System.out.println("===========================================================");
-          System.out.println(line);
+          System.out.println(sentenceFromFile.get(i) + ".");
           return;
         }
       }
