@@ -1,0 +1,19 @@
+=======================
+Total word count: 443
+=======================
+Top 10 words:
+=======================
+the
+is
+of
+object
+to
+price
+formats
+and
+high
+or
+===========================================================
+Last sentence on the file that contains the most used word:
+===========================================================
+Closed formats are opague: only the seller is able to tell how much each customer is willing to pay for an object.
